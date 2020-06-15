@@ -3,25 +3,23 @@ package com.cdbhe.plib.list.convert;
 import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
-import android.support.annotation.ColorInt;
-import android.support.annotation.DrawableRes;
-import android.support.annotation.IdRes;
-import android.support.annotation.StringRes;
+import androidx.annotation.ColorInt;
+import androidx.annotation.DrawableRes;
+import androidx.annotation.IdRes;
+import androidx.annotation.StringRes;
 import android.util.SparseArray;
 import android.view.View;
 import android.view.animation.AlphaAnimation;
 import android.widget.Adapter;
 import android.widget.AdapterView;
-import android.widget.CheckBox;
 import android.widget.Checkable;
 import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
-import android.widget.RadioButton;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
-import com.kevin.photo_browse.utils.GlideHelper;
+import com.kevin.photo_browse.utils.PicassoHelper;
 
 public class Converter {
     private View mConvertView;
@@ -47,7 +45,7 @@ public class Converter {
      * @param viewId
      * @return
      */
-    private <T extends View> T getView(int viewId) {
+    public <T extends View> T getView(int viewId) {
         View childView = mViews.get(viewId);
         if (childView == null) {
             childView = mConvertView.findViewById(viewId);
@@ -126,7 +124,7 @@ public class Converter {
      */
     public Converter setImageResource(@IdRes int viewId, String url) {
         ImageView iv = getView(viewId);
-        GlideHelper.load(mConvertView.getContext(),url,iv);
+        PicassoHelper.load(url,iv);
         return this;
     }
 
